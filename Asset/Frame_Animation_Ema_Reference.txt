@@ -1,0 +1,14 @@
+Tiled: 
+--0-38 Sacar y Leer libro.
+--39 Personaje Generico(sin movimiento).
+--40-45 Idle.
+--46-54 Correr.
+--55-56 Frenar.
+--57-70 Tirar Gancho.
+--71-73 Colgada del gancho.
+--74-80 Ganar.
+--81-85 Perder.
+--86-95 Levantar Reliquia.
+
+
+
