@@ -5,7 +5,7 @@
 [sub_resource type="CapsuleShape2D" id=1]
 height = 72.7028
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=2]
 resource_name = "Grab"
 length = 1.4
 tracks/0/type = "value"
@@ -21,8 +21,7 @@ tracks/0/keys = {
 "values": [ 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70 ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle"
+[sub_resource type="Animation" id=3]
 length = 0.72
 loop = true
 tracks/0/type = "value"
@@ -38,7 +37,7 @@ tracks/0/keys = {
 "values": [ 39, 40, 41, 42, 43, 44, 45 ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=4]
 resource_name = "Jump"
 length = 0.32
 loop = true
@@ -55,7 +54,7 @@ tracks/0/keys = {
 "values": [ 71, 72, 73 ]
 }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=5]
 resource_name = "Lose"
 length = 0.52
 tracks/0/type = "value"
@@ -71,7 +70,7 @@ tracks/0/keys = {
 "values": [ 81, 82, 83, 84, 85 ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=6]
 resource_name = "Pick"
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -86,7 +85,7 @@ tracks/0/keys = {
 "values": [ 86, 87, 88, 89, 90, 91, 92, 93, 94, 95 ]
 }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=7]
 length = 3.9
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -101,8 +100,7 @@ tracks/0/keys = {
 "values": [ 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38 ]
 }
 
-[sub_resource type="Animation" id=4]
-resource_name = "Run"
+[sub_resource type="Animation" id=8]
 length = 0.9
 loop = true
 tracks/0/type = "value"
@@ -118,8 +116,7 @@ tracks/0/keys = {
 "values": [ 48, 47, 48, 49, 50, 51, 52, 53, 49 ]
 }
 
-[sub_resource type="Animation" id=5]
-resource_name = "Stop"
+[sub_resource type="Animation" id=9]
 length = 0.32
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -134,8 +131,7 @@ tracks/0/keys = {
 "values": [ 55, 56, 39 ]
 }
 
-[sub_resource type="Animation" id=9]
-resource_name = "Win"
+[sub_resource type="Animation" id=10]
 length = 0.72
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -165,15 +161,15 @@ position = Vector2( 0, 10 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Grab = SubResource( 6 )
-anims/Idle = SubResource( 2 )
-anims/Jump = SubResource( 7 )
-anims/Lose = SubResource( 10 )
-anims/Pick = SubResource( 8 )
-anims/Read = SubResource( 3 )
-anims/Run = SubResource( 4 )
-anims/Stop = SubResource( 5 )
-anims/Win = SubResource( 9 )
+anims/Grab = SubResource( 2 )
+anims/Idle = SubResource( 3 )
+anims/Jump = SubResource( 4 )
+anims/Lose = SubResource( 5 )
+anims/Pick = SubResource( 6 )
+anims/Read = SubResource( 7 )
+anims/Run = SubResource( 8 )
+anims/Stop = SubResource( 9 )
+anims/Win = SubResource( 10 )
 
 [node name="Position2D" type="Position2D" parent="."]
 visible = false
