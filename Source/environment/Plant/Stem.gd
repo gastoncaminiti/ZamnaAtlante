@@ -8,7 +8,7 @@ func base_point():
 	return $Position2D.global_transform
 
 func ingrow():
-	$AnimationPlayer.play_backwards("Dead")
+	$AnimationPlayer.play("Dead")
 	
 
 func _on_AnimationPlayer_animation_finished(anim_name):

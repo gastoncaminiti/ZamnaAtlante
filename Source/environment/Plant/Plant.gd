@@ -4,6 +4,8 @@ extends Node2D
 export(PackedScene) var Stem
 export(int) var _stemcant
 
+var listSteams
+
 # Declare member variables here. Examples:
 # var a = 2
 # var b = "text"
@@ -12,14 +14,19 @@ export(int) var _stemcant
 func _ready():
 	 pass
 
-func _process(delta):
-	if (Input.is_action_pressed("choose_day")):
-		var s = Stem.instance()
-		s.start($GrowPosition2D)
-		get_parent().add_child(s)
-		$GrowPosition2D.global_transform = s.base_point()
-	if (Input.is_action_pressed("choose_night")):
-		var s = get_parent().get_children().back()
-		if(s.is_in_group("Stem")):
-			$GrowPosition2D.global_transform = s.global_transform
-			s.ingrow()
+
+func grow():
+	var s = Stem.instance()
+	s.start($GrowPosition2D)
+	get_parent().add_child(s)
+	$GrowPosition2D.global_transform = s.base_point()
+	
+
+	
+func ingrow():
+	var s = get_parent().get_children().back()
+	print(s)
+	if(s.is_in_group("Stem")):
+		$GrowPosition2D.global_transform = s.global_transform
+		s.ingrow()
+	

@@ -16,11 +16,16 @@ _global_script_class_icons={
 [application]
 
 config/name="ZamnaAtlante"
+run/main_scene="res://GUI/StarScreen.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+EventManager="*res://levels/EventManager.gd"
 
 [display]
 
-window/stretch/mode="viewport"
+window/stretch/mode="2d"
 
 [input]
 

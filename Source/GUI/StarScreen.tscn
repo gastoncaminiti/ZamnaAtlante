@@ -50,7 +50,6 @@ texture = ExtResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -9.53674e-007, 0 )
-scale = Vector2( 1, 1 )
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 50, 50 )
 format = 1
@@ -80,7 +79,6 @@ rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 
 [node name="Ema" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 761.303, 440.565 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 6 )
@@ -107,10 +105,10 @@ scale = Vector2( 4, 4 )
 texture = ExtResource( 8 )
 
 [node name="ButtonPlay" type="Button" parent="."]
-margin_left = 763.314
-margin_top = 108.504
-margin_right = 898.314
-margin_bottom = 158.504
+margin_left = 758.0
+margin_top = 95.0
+margin_right = 903.0
+margin_bottom = 172.0
 custom_fonts/font = SubResource( 3 )
 text = "Play"
 flat = true
