@@ -42,11 +42,10 @@ func ingrow():
 
 func _process(delta):
 	if(canMove):
-		
 		if(isGrow):
-			global_position += targetPoint * delta *1.1
+			global_position += targetPoint * delta 
 		else:
-			global_position -= targetPoint * delta *1.1
+			global_position -= targetPoint * delta 
 		nGrow+= 1
 		if(nGrow == 60):
 			canMove = false

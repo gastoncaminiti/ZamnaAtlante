@@ -9,7 +9,6 @@ func base_point():
 
 func ingrow():
 	$AnimationPlayer.play("Dead")
-	
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if(anim_name == "Dead"):
