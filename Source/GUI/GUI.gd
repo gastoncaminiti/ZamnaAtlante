@@ -1,5 +1,10 @@
 extends CanvasLayer
 
+func notificationSunMoon(anim):
+	$SunMoonContainer/SunMoon/AnimationPlayer.play(anim)
 
-func _on_Level0_future_signal():
-	$ZamnaContainer/HBoxContainer/Zamna/AnimationPlayer.play("PastToFuture")
+func notificationZanma(anim):
+	$ZamnaContainer/HBoxContainer/Zamna/AnimationPlayer.play(anim)
+
+func notificationDay(n_day):
+	$ZamnaContainer/TextContainer/PanelContainer/Label.set_text(String(n_day))

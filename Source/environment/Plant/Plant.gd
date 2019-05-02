@@ -46,8 +46,7 @@ func _process(delta):
 			global_position += targetPoint * delta 
 		else:
 			global_position -= targetPoint * delta 
-		nGrow+= 1
-		if(nGrow == 60):
-			canMove = false
-			nGrow = 0
 	
+	
+func timeEnd():
+	canMove = false

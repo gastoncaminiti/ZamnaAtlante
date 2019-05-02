@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://levels/LevelManager.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Background/Background.tscn" type="PackedScene" id=2]
@@ -6,11 +6,17 @@
 [ext_resource path="res://levels/Map/MapL0.tscn" type="PackedScene" id=4]
 [ext_resource path="res://environment/Plant/Plant.tscn" type="PackedScene" id=5]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/TimerTime.tscn" type="PackedScene" id=7]
+[ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=8]
 
 [node name="Level0" type="Node2D" groups=[
 "Level",
 ]]
 script = ExtResource( 1 )
+isNight = true
+toFuture = true
+day = 5
+cooldown = 1.0
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
 margin_left = -120.0
@@ -38,6 +44,7 @@ rotation = 4.71238
 position = Vector2( 360, 470 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
 position = Vector2( 290, 450 )
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
@@ -45,3 +52,10 @@ current = true
 zoom = Vector2( 0.5, 0.5 )
 limit_smoothed = true
 
+[node name="TimerTime" parent="." instance=ExtResource( 7 )]
+
+[node name="Portal" parent="." instance=ExtResource( 8 )]
+position = Vector2( 630, 440 )
+
+[connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
+[connection signal="body_entered" from="Portal" to="." method="_on_Portal_body_entered"]
