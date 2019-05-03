@@ -10,6 +10,10 @@ func base_point():
 func ingrow():
 	$AnimationPlayer.play("Dead")
 
+func addone(position_node):
+	$Sprite.set_frame(2)
+	transform = position_node.transform
+
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if(anim_name == "Dead"):
 		queue_free()

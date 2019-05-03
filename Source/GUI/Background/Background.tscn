@@ -1,8 +1,27 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://GUI/Images/sky.png" type="Texture" id=1]
 
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float back_value = 0;
+
+vec4 getBackColor(float index,vec4 color_origin, float time){
+		vec4 color_trasform  = vec4(color_origin.r,color_origin.g - index,color_origin.b ,color_origin.a); 
+		return color_trasform;
+}
+
+void fragment() {
+	COLOR = getBackColor(back_value,texture(TEXTURE, UV), TIME);
+}"
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/back_value = 0.0
+
 [node name="Background" type="TextureRect"]
+material = SubResource( 2 )
 margin_right = 40.0
 margin_bottom = 40.0
 texture = ExtResource( 1 )

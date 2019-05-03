@@ -79,6 +79,7 @@ rect_scale = Vector2( 3, 3 )
 texture = ExtResource( 5 )
 
 [node name="Ema" type="Sprite" parent="."]
+editor/display_folded = true
 position = Vector2( 761.303, 440.565 )
 scale = Vector2( 7, 7 )
 texture = ExtResource( 6 )

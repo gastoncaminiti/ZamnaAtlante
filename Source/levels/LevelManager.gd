@@ -1,9 +1,10 @@
 extends Node
 
+#Declaración de variables de uso interno
 var listPlants
 var can_change_time = true
 
-# Variables configurables
+#Declaración de variables configurables del Nivel
 export(bool)   var isNight
 export(bool)   var toFuture
 export(int)    var day
@@ -12,8 +13,10 @@ export(float)  var cooldown
 
 func _ready():
 	if(isNight):
+		$Background.material.set("shader_param/back_value",1)
 		$GUI.notificationSunMoon("Night")
 	else:
+		$Background.material.set("shader_param/back_value",0)
 		$GUI.notificationSunMoon("Day")
 	$GUI.notificationDay(day)
 	listPlants = get_tree().get_nodes_in_group("Plants")
@@ -23,11 +26,13 @@ func timepass():
 	if(can_change_time):
 		if(isNight):
 			$GUI.notificationSunMoon("NightToDay")
+			$Background.material.set("shader_param/back_value",0)
 			if(toFuture):
 				day+=1
 			isNight = false
 		else:
 			$GUI.notificationSunMoon("DayToNight")
+			$Background.material.set("shader_param/back_value",1)
 			if(!toFuture):
 				day-= 1
 			isNight = true
@@ -68,6 +73,6 @@ func _on_TimerTime_timeout():
 		p.timeEnd()
 
 func _on_Portal_body_entered(body):
-	if(body.get_name() == "Player"):
+	if(body.is_in_group("Players")):
 		$Player.AnimPlay("Win")
 
