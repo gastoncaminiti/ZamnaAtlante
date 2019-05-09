@@ -5,20 +5,24 @@
 [sub_resource type="Shader" id=1]
 code = "shader_type canvas_item;
 
-uniform float back_value = 0;
+uniform float back_value;
 
 vec4 getBackColor(float index,vec4 color_origin, float time){
-		vec4 color_trasform  = vec4(color_origin.r,color_origin.g - index,color_origin.b ,color_origin.a); 
+	
+	    float f = color_origin.g - index;
+		vec4 color_trasform  = color_origin;
+		color_trasform.g = step(color_origin.g, f);
 		return color_trasform;
 }
 
 void fragment() {
+	TIME	;
 	COLOR = getBackColor(back_value,texture(TEXTURE, UV), TIME);
 }"
 
 [sub_resource type="ShaderMaterial" id=2]
 shader = SubResource( 1 )
-shader_param/back_value = 0.0
+shader_param/back_value = 1.0
 
 [node name="Background" type="TextureRect"]
 material = SubResource( 2 )

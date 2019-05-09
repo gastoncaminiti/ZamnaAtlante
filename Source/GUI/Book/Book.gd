@@ -1,9 +1,10 @@
 tool
-extends TextureRect
+extends Control
 
 export(String) var titulo
 export(String) var texto
 
 func _ready():
-	$Title.text = titulo
-	$Label.text = texto
+	$PageContainer/Title.text = titulo
+	$PageContainer/Text.text = texto
+	

@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://GUI/Images/CuadradoAdornado.png" type="Texture" id=1]
+[ext_resource path="res://GUI/Font/Pixelopolis 9000.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+outline_size = 4
+outline_color = Color( 0.188235, 0.309804, 0.0313726, 1 )
+font_data = ExtResource( 2 )
+
+[node name="NumberContainer" type="MarginContainer"]
+margin_right = 70.0
+margin_bottom = 70.0
+rect_min_size = Vector2( 70, 70 )
+
+[node name="Background" type="NinePatchRect" parent="."]
+margin_right = 70.0
+margin_bottom = 70.0
+texture = ExtResource( 1 )
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
+
+[node name="Number" type="Label" parent="."]
+margin_top = 15.0
+margin_right = 70.0
+margin_bottom = 54.0
+custom_fonts/font = SubResource( 1 )
+text = "10"
+align = 1
+valign = 1
+

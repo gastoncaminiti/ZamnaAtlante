@@ -4,7 +4,7 @@
 [ext_resource path="res://player/Player.png" type="Texture" id=2]
 
 [sub_resource type="CapsuleShape2D" id=1]
-height = 72.7028
+height = 60.0
 
 [sub_resource type="Animation" id=2]
 resource_name = "Grab"
@@ -157,11 +157,10 @@ position = Vector2( 0.291992, 0 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 6
-frame = 80
+frame = 38
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2( 0, 10 )
+position = Vector2( 0, 13 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
