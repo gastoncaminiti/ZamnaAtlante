@@ -16,7 +16,6 @@ func _ready():
 	targetPoint = initPos
 	canMove = false
 	isGrow = false
-#warning-ignore:unused_variable
 	for i in range(stemcant):
 		addsteam()
 

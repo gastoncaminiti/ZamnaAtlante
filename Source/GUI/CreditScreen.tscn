@@ -1,12 +1,13 @@
 [gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://GUI/Images/sky.png" type="Texture" id=1]
-[ext_resource path="res://levels/Tileset.tres" type="TileSet" id=2]
+[ext_resource path="res://levels/Tiles/Tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://GUI/Images/Totem.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Font/Positive System.otf" type="DynamicFontData" id=4]
 [ext_resource path="res://GUI/Book/Book.tscn" type="PackedScene" id=5]
 [ext_resource path="res://environment/Item/Track.tscn" type="PackedScene" id=6]
 [ext_resource path="res://GUI/Images/Logo.png" type="Texture" id=7]
+
 
 [sub_resource type="DynamicFont" id=1]
 size = 90

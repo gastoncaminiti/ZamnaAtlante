@@ -4,7 +4,7 @@ extends Node
 var listPlants
 var can_change_time = true
 
-#Declaración de variables configurables del Nivel
+#Declaración de variables configurables del nivel
 export(bool)   var isNight
 export(bool)   var toFuture
 export(int)    var day
@@ -12,6 +12,11 @@ export(float)  var cooldown
 
 
 func _ready():
+	#Configuración inicial de conexiones con manejadores.
+	connect_event_manager("time_changed","_timepass")
+	connect_event_manager("future_changed","_goFuture")
+	connect_event_manager("past_changed","_goPast")
+	connect_event_manager("book_readed","_goRead")
 	#Configuración inicial del periodo de tiempo.
 	if(isNight):
 		$Background.material.set("shader_param/back_value",1)
@@ -29,7 +34,7 @@ func _ready():
 	listPlants = get_tree().get_nodes_in_group("Plants")
 	$TimerTime.set_wait_time(cooldown)
 
-func timepass():
+func _timepass():
 	if(can_change_time):
 		if(isNight):
 			$HUB/GUI.notificationSunMoon("NightToDay")
@@ -53,22 +58,23 @@ func timepass():
 		can_change_time= false
 		wait()
 
-func goFuture():
+func _goFuture():
 	if(can_change_time && !toFuture):
 		toFuture = true
 		$HUB/GUI.notificationZanma("PastToFuture")
 		can_change_time = false
 		wait()
 
-func goPass():
+func _goPast():
 	if(can_change_time && toFuture):
 		toFuture = false
 		$HUB/GUI.notificationZanma("FutureToPast")
 		can_change_time = false
 		wait()
-
-func wait():
-	$TimerTime.start()
+		
+func _goRead():
+	$Player.AnimPlay("Read")
+	$HUB/Book.set_visible(true)
 
 func _on_TimerTime_timeout():
 	can_change_time = true
@@ -79,16 +85,16 @@ func _on_TimerTime_timeout():
 	for p in listPlants:
 		p.timeEnd()
 
-func read():
-	$HUB/Book.set_visible(true)
-	#$Player.AnimPlay("Read")
-		
-func openbook():
-	#$HUB/Book.set_visible(true)
-	pass
-
+func wait():
+	$TimerTime.start()
+	
 func hideBook():
 	$HUB/Book.set_visible(false)
+
+# Función que permite conectar un señal del manejador de eventos con una función del manejador de niveles.
+func connect_event_manager(nsignal, nfunction):
+	if EventManager.connect(nsignal,self,nfunction) != OK:
+		print("Error al conectar "+ name +" con el manejador de eventos - Señal "+nsignal+" Función "+nfunction)
 
 func _on_Portal_body_entered(body):
 	if(body.is_in_group("Players")):

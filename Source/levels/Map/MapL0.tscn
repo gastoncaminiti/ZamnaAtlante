@@ -1,6 +1,7 @@
 [gd_scene load_steps=2 format=2]
 
-[ext_resource path="res://levels/Tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://levels/Tiles/Tileset.tres" type="TileSet" id=1]
+
 
 [node name="Map0" type="Node2D"]
 

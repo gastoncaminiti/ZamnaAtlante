@@ -1,14 +1,15 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
-[ext_resource path="res://levels/LevelManager.gd" type="Script" id=1]
+[ext_resource path="res://levels/Manager/LevelManager.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Background/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/Map/MapL0.tscn" type="PackedScene" id=3]
 [ext_resource path="res://environment/Plant/Plant.tscn" type="PackedScene" id=4]
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://levels/TimerTime.tscn" type="PackedScene" id=6]
-[ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=7]
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=8]
-[ext_resource path="res://GUI/Book/Book.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player/Camera2D.tscn" type="PackedScene" id=6]
+[ext_resource path="res://levels/Manager/TimerTime.tscn" type="PackedScene" id=7]
+[ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=8]
+[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GUI/Book/Book.tscn" type="PackedScene" id=10]
 
 [node name="Level0" type="Node2D" groups=[
 "Level",
@@ -32,22 +33,18 @@ stemcant = 5
 [node name="Player" parent="." instance=ExtResource( 5 )]
 position = Vector2( 290, 450 )
 
-[node name="Camera2D" type="Camera2D" parent="Player"]
-position = Vector2( 20, -20 )
-current = true
-zoom = Vector2( 0.45, 0.45 )
-limit_smoothed = true
+[node name="Camera2D" parent="Player" instance=ExtResource( 6 )]
 
-[node name="TimerTime" parent="." instance=ExtResource( 6 )]
+[node name="TimerTime" parent="." instance=ExtResource( 7 )]
 
-[node name="Portal" parent="." instance=ExtResource( 7 )]
+[node name="Portal" parent="." instance=ExtResource( 8 )]
 position = Vector2( 630, 450 )
 
 [node name="HUB" type="CanvasLayer" parent="."]
 
-[node name="GUI" parent="HUB" instance=ExtResource( 8 )]
+[node name="GUI" parent="HUB" instance=ExtResource( 9 )]
 
-[node name="Book" parent="HUB" instance=ExtResource( 9 )]
+[node name="Book" parent="HUB" instance=ExtResource( 10 )]
 visible = false
 margin_left = -332.0
 margin_top = -280.0

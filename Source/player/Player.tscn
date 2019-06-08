@@ -151,13 +151,14 @@ tracks/0/keys = {
 "Players",
 ]]
 script = ExtResource( 1 )
+run_speed = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.291992, 0 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 6
-frame = 38
+frame = 39
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 13 )
