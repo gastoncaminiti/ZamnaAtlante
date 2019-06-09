@@ -10,6 +10,7 @@ export(bool)   var toFuture
 export(int)    var day
 export(float)  var cooldown
 
+var winLevel = false
 
 func _ready():
 	#Configuración inicial de conexiones con manejadores.
@@ -17,6 +18,8 @@ func _ready():
 	connect_event_manager("future_changed","_goFuture")
 	connect_event_manager("past_changed","_goPast")
 	connect_event_manager("book_readed","_goRead")
+	connect_event_manager("gui_exited","_goExit")
+	$Player.connect("animation_finished",self,"_goAction_after_animation")
 	#Configuración inicial del periodo de tiempo.
 	if(isNight):
 		$Background.material.set("shader_param/back_value",1)
@@ -33,6 +36,7 @@ func _ready():
 	$HUB/GUI.notificationDay(day)
 	listPlants = get_tree().get_nodes_in_group("Plants")
 	$TimerTime.set_wait_time(cooldown)
+	winLevel = false
 
 func _timepass():
 	if(can_change_time):
@@ -74,7 +78,10 @@ func _goPast():
 		
 func _goRead():
 	$Player.AnimPlay("Read")
-	$HUB/Book.set_visible(true)
+
+func _goExit():
+	if($HUB/Book.is_visible()):
+		$HUB/Book.set_visible(false)
 
 func _on_TimerTime_timeout():
 	can_change_time = true
@@ -99,4 +106,11 @@ func connect_event_manager(nsignal, nfunction):
 func _on_Portal_body_entered(body):
 	if(body.is_in_group("Players")):
 		$Player.AnimPlay("Win")
+		winLevel = true
 
+func _goAction_after_animation(status):
+	if status == "read":
+		$HUB/Book.set_visible(true)
+	if status == "win":
+		print("Win")
+	
