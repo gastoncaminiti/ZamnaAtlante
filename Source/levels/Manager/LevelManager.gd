@@ -1,3 +1,4 @@
+tool
 extends Node
 
 #Declaración de variables de uso interno
@@ -5,12 +6,15 @@ var listPlants
 var can_change_time = true
 
 #Declaración de variables configurables del nivel
-export(bool)   var isNight
+export(bool)   var isNight setget set_night
 export(bool)   var toFuture
 export(int)    var day
 export(float)  var cooldown
 
 var winLevel = false
+
+signal plants_growed
+signal plants_decreased
 
 func _ready():
 	#Configuración inicial de conexiones con manejadores.
@@ -19,14 +23,9 @@ func _ready():
 	connect_event_manager("past_changed","_goPast")
 	connect_event_manager("book_readed","_goRead")
 	connect_event_manager("gui_exited","_goExit")
-	$Player.connect("animation_finished",self,"_goAction_after_animation")
-	#Configuración inicial del periodo de tiempo.
-	if(isNight):
-		$Background.material.set("shader_param/back_value",1)
-		$HUB/GUI.notificationSunMoon("Night")
-	else:
-		$Background.material.set("shader_param/back_value",0)
-		$HUB/GUI.notificationSunMoon("Day")
+	connect_player_manager("animation_finished","_goAction_after_animation")
+	#Configuración inicial del nivel.
+	$Background.material.set("shader_param/back_value", 1 if isNight else 0)
 	#Configuración inicial del viaje en el tiempo.
 	if(toFuture):
 		$HUB/GUI.notificationZanma("Future")
@@ -54,11 +53,15 @@ func _timepass():
 			isNight = true
 		$HUB/GUI.notificationDay(day)
 		# Notificación de cambio de tiempo a elementos vivos
-		for p in listPlants:
+		""" for p in listPlants:
 			if(toFuture):
 				p.grow()
 			else:
-				p.ingrow()
+				p.ingrow()""" 
+		if(toFuture):
+			emit_signal("plants_growed")
+		else:
+			emit_signal("plants_decreased")
 		can_change_time= false
 		wait()
 
@@ -97,11 +100,26 @@ func wait():
 	
 func hideBook():
 	$HUB/Book.set_visible(false)
+	
+func set_night(new_value):
+	isNight = new_value
+	if Engine.editor_hint:
+		$Background.material.set("shader_param/back_value", 1 if isNight else 0)
+		#Configuración del periodo de tiempo diario.
+		if(isNight):
+			$HUB/GUI.notificationSunMoon("Night")
+		else:
+			$HUB/GUI.notificationSunMoon("Day")
 
-# Función que permite conectar un señal del manejador de eventos con una función del manejador de niveles.
+# Función que permite conectar una señal del manejador de eventos con una función del manejador de niveles.
 func connect_event_manager(nsignal, nfunction):
 	if EventManager.connect(nsignal,self,nfunction) != OK:
 		print("Error al conectar "+ name +" con el manejador de eventos - Señal "+nsignal+" Función "+nfunction)
+		
+# Función que permite conectar una señal de estado del jugador con una función del manejador de niveles.
+func connect_player_manager(nsignal, nfunction):
+	if $Player.connect(nsignal,self,nfunction) != OK:
+		print("Error al conectar "+ name +" con el jugador - Señal "+nsignal+" Función "+nfunction)
 
 func _on_Portal_body_entered(body):
 	if(body.is_in_group("Players")):

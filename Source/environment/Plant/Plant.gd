@@ -18,7 +18,9 @@ func _ready():
 	isGrow = false
 	for i in range(stemcant):
 		addsteam()
-
+	connect_parent_child("plants_growed","grow")
+	connect_parent_child("plants_decreased","ingrow")
+	
 func grow():
 	var s = Stem.instance()
 	s.grow($GrowPosition2D)
@@ -55,3 +57,8 @@ func _process(delta):
 
 func timeEnd():
 	canMove = false
+	
+# Función que permite conectar una señal de nodo padre con una función del nodo hijo.
+func connect_parent_child(nsignal, nfunction):
+	if get_parent().connect(nsignal,self,nfunction) != OK:
+		print("Error al conectar "+ name +" con el padre - Señal "+nsignal+" Función "+nfunction)
