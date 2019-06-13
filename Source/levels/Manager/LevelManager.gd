@@ -2,7 +2,6 @@ tool
 extends Node
 
 #Declaración de variables de uso interno
-var listPlants
 var can_change_time = true
 
 #Declaración de variables configurables del nivel
@@ -15,6 +14,7 @@ var winLevel = false
 
 signal plants_growed
 signal plants_decreased
+signal plants_stoped
 
 func _ready():
 	#Configuración inicial de conexiones con manejadores.
@@ -24,40 +24,25 @@ func _ready():
 	connect_event_manager("book_readed","_goRead")
 	connect_event_manager("gui_exited","_goExit")
 	connect_player_manager("animation_finished","_goAction_after_animation")
-	#Configuración inicial del nivel.
-	$Background.material.set("shader_param/back_value", 1 if isNight else 0)
-	#Configuración inicial del viaje en el tiempo.
-	if(toFuture):
-		$HUB/GUI.notificationZanma("Future")
-	else:
-		$HUB/GUI.notificationZanma("Past")
-	#Configuración inicial del numero de días y reconocimiento de nodos vivientes.
-	$HUB/GUI.notificationDay(day)
-	listPlants = get_tree().get_nodes_in_group("Plants")
+	#Configuración inicial de fondo y elementos del HUB
+	background_config()
+	$HUB.status_gui_zanma(toFuture)
+	$HUB.status_gui_sunmoon(isNight)
+	$HUB/GUI.notification_day(day)
 	$TimerTime.set_wait_time(cooldown)
 	winLevel = false
 
 func _timepass():
 	if(can_change_time):
-		if(isNight):
-			$HUB/GUI.notificationSunMoon("NightToDay")
-			$Background.material.set("shader_param/back_value",0)
-			if(toFuture):
-				day+=1
-			isNight = false
-		else:
-			$HUB/GUI.notificationSunMoon("DayToNight")
-			$Background.material.set("shader_param/back_value",1)
-			if(!toFuture):
-				day-= 1
-			isNight = true
-		$HUB/GUI.notificationDay(day)
+		$HUB.transition_gui_sunmoon(isNight)
+		if(isNight and toFuture): 
+			day+=1				
+		if(!isNight and !toFuture):
+			day-= 1
+		isNight = !isNight
+		background_config()
+		$HUB/GUI.notification_day(day)
 		# Notificación de cambio de tiempo a elementos vivos
-		""" for p in listPlants:
-			if(toFuture):
-				p.grow()
-			else:
-				p.ingrow()""" 
 		if(toFuture):
 			emit_signal("plants_growed")
 		else:
@@ -68,14 +53,14 @@ func _timepass():
 func _goFuture():
 	if(can_change_time && !toFuture):
 		toFuture = true
-		$HUB/GUI.notificationZanma("PastToFuture")
+		$HUB.transition_gui_zanma(toFuture)
 		can_change_time = false
 		wait()
 
 func _goPast():
 	if(can_change_time && toFuture):
 		toFuture = false
-		$HUB/GUI.notificationZanma("FutureToPast")
+		$HUB.transition_gui_zanma(toFuture)
 		can_change_time = false
 		wait()
 		
@@ -88,12 +73,8 @@ func _goExit():
 
 func _on_TimerTime_timeout():
 	can_change_time = true
-	if(isNight):
-		$HUB/GUI.notificationSunMoon("Night")
-	else:
-		$HUB/GUI.notificationSunMoon("Day")
-	for p in listPlants:
-		p.timeEnd()
+	$HUB.status_gui_sunmoon(isNight)
+	emit_signal("plants_stoped")
 
 func wait():
 	$TimerTime.start()
@@ -104,12 +85,11 @@ func hideBook():
 func set_night(new_value):
 	isNight = new_value
 	if Engine.editor_hint:
-		$Background.material.set("shader_param/back_value", 1 if isNight else 0)
-		#Configuración del periodo de tiempo diario.
-		if(isNight):
-			$HUB/GUI.notificationSunMoon("Night")
-		else:
-			$HUB/GUI.notificationSunMoon("Day")
+		background_config()
+		$HUB.status_gui_sunmoon(isNight)
+
+func background_config():
+	$Background.material.set("shader_param/back_value", 1 if isNight else 0)
 
 # Función que permite conectar una señal del manejador de eventos con una función del manejador de niveles.
 func connect_event_manager(nsignal, nfunction):

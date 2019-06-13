@@ -1,3 +1,4 @@
+tool
 extends StaticBody2D
 
 func grow(position_node):

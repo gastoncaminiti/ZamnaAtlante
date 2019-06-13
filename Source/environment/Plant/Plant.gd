@@ -2,7 +2,7 @@ tool
 extends Node2D
 
 export(PackedScene) var Stem
-export(int) var stemcant
+export(int) var length_stem
 
 var initPos
 var initGrow
@@ -11,15 +11,19 @@ var canMove
 var isGrow
 
 func _ready():
+	connect_parent_child("plants_growed","grow")
+	connect_parent_child("plants_decreased","ingrow")
+	connect_parent_child("plants_stoped","timeEnd")
+	
 	initGrow =  $GrowPosition2D.position
 	initPos  = global_position
 	targetPoint = initPos
 	canMove = false
 	isGrow = false
-	for i in range(stemcant):
+	
+	for i in range(length_stem):
 		addsteam()
-	connect_parent_child("plants_growed","grow")
-	connect_parent_child("plants_decreased","ingrow")
+	
 	
 func grow():
 	var s = Stem.instance()

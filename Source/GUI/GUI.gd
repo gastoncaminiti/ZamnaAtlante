@@ -1,11 +1,11 @@
 tool
 extends Control
 
-func notificationSunMoon(anim):
-	$SunMoonContainer/SunMoon/AnimationPlayer.play(anim)
+func notification_sunmoon(new_anim):
+	$SunMoonContainer/SunMoon/AnimationPlayer.play(new_anim)
 
-func notificationZanma(anim):
-	$ZamnaContainer/Zamna/AnimationPlayer.play(anim)
+func notification_zanma(new_anim):
+	$ZamnaContainer/Zamna/AnimationPlayer.play(new_anim)
 
-func notificationDay(n_day):
-	$NumberContainer/Number.set_text(String(n_day))
+func notification_day(new_day):
+	$NumberContainer/Number.set_text(String(new_day))
