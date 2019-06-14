@@ -24,8 +24,8 @@ tracks/0/keys = {
 ]]
 scale = Vector2( 0.5, 0.5 )
 script = ExtResource( 1 )
-Stem = ExtResource( 2 )
-length_stem = 1
+stem = ExtResource( 2 )
+origin_grow = Vector2( 0, 70 )
 
 [node name="Head" type="Sprite" parent="."]
 texture = ExtResource( 3 )
@@ -38,5 +38,4 @@ frame = 1
 anims/Grow = SubResource( 1 )
 
 [node name="GrowPosition2D" type="Position2D" parent="."]
-position = Vector2( 0, 6090 )
 

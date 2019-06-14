@@ -3,18 +3,17 @@
 [ext_resource path="res://levels/Manager/LevelManager.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Background/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/Map/MapL0.tscn" type="PackedScene" id=3]
-[ext_resource path="res://environment/Plant/Plant.tscn" type="PackedScene" id=4]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=5]
-[ext_resource path="res://player/Camera2D.tscn" type="PackedScene" id=6]
-[ext_resource path="res://levels/Manager/TimerTime.tscn" type="PackedScene" id=7]
-[ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=8]
-[ext_resource path="res://GUI/HUB.tscn" type="PackedScene" id=9]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/Camera2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/Manager/TimerTime.tscn" type="PackedScene" id=6]
+[ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GUI/HUB.tscn" type="PackedScene" id=8]
+[ext_resource path="res://environment/Plant/Plant.tscn" type="PackedScene" id=9]
 
 [node name="Level0" type="Node2D" groups=[
 "Level",
 ]]
 script = ExtResource( 1 )
-isNight = true
 day = 7
 cooldown = 1.0
 
@@ -26,20 +25,27 @@ margin_bottom = 860.0
 
 [node name="Map0" parent="." instance=ExtResource( 3 )]
 
-[node name="Plant" parent="." instance=ExtResource( 4 )]
-position = Vector2( 340, -5630 )
-
-[node name="Player" parent="." instance=ExtResource( 5 )]
+[node name="Player" parent="." instance=ExtResource( 4 )]
 position = Vector2( 290, 450 )
 
-[node name="Camera2D" parent="Player" instance=ExtResource( 6 )]
+[node name="Camera2D" parent="Player" instance=ExtResource( 5 )]
 
-[node name="TimerTime" parent="." instance=ExtResource( 7 )]
+[node name="TimerTime" parent="." instance=ExtResource( 6 )]
 
-[node name="Portal" parent="." instance=ExtResource( 8 )]
+[node name="Portal" parent="." instance=ExtResource( 7 )]
 position = Vector2( 630, 450 )
 
-[node name="HUB" parent="." instance=ExtResource( 9 )]
+[node name="HUB" parent="." instance=ExtResource( 8 )]
+
+[node name="Plant" parent="." instance=ExtResource( 9 )]
+position = Vector2( 350, 465 )
+origin_plant = Vector2( 350, 500 )
+
+[node name="Plant2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 300, 330 )
+rotation = -1.57079
+length_stem = 1
+origin_plant = Vector2( 300, 400 )
 
 [connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
 [connection signal="body_entered" from="Portal" to="." method="_on_Portal_body_entered"]

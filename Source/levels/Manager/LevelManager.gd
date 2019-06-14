@@ -84,7 +84,7 @@ func hideBook():
 	
 func set_night(new_value):
 	isNight = new_value
-	if Engine.editor_hint:
+	if Engine.editor_hint and get_parent():
 		background_config()
 		$HUB.status_gui_sunmoon(isNight)
 
