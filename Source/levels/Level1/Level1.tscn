@@ -36,16 +36,17 @@ margin_bottom = 884.0
 visible = false
 
 [node name="Plant" parent="." instance=ExtResource( 6 )]
-position = Vector2( 254.374, 563.394 )
-stemcant = 1
+position = Vector2( 350, 480 )
+length_stem = 1
+origin_plant = Vector2( 350, 550 )
 
 [node name="Plant2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 293.374, 563.394 )
-stemcant = 1
+position = Vector2( 300, 465 )
+origin_plant = Vector2( 300, 500 )
 
 [node name="Plant3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 329.374, 563.394 )
-stemcant = 1
+position = Vector2( 260, 515 )
+origin_plant = Vector2( 260, 550 )
 
 [node name="PlataformMove" parent="." instance=ExtResource( 7 )]
 position = Vector2( 316.041, 520.702 )

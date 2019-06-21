@@ -12,13 +12,12 @@ func _ready():
 	$AnimationPlayer.play("Idle")
 
 func _physics_process(delta):
-	if($AnimationPlayer.current_animation != "Win"):
 		velocity.y += gravity * delta
 		velocity = move_and_slide(velocity, Vector2(0, -1))
 
 func _process(_delta):	
 	if($AnimationPlayer.current_animation != "Win"):
-		if(abs(velocity.x) >= run_speed):
+		if(velocity.x != 0):
 			$AnimationPlayer.play("Run")
 		if(velocity.x == 0 and $AnimationPlayer.current_animation == "Run"):  
 			$AnimationPlayer.play("Stop")
@@ -36,7 +35,6 @@ func _goMove(status):
 
 func AnimPlay(anim_name):
 	$AnimationPlayer.play(anim_name)
-	
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if(anim_name == "Stop"):

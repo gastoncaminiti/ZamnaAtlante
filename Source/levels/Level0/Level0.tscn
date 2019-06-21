@@ -14,7 +14,7 @@
 "Level",
 ]]
 script = ExtResource( 1 )
-day = 7
+day = 4
 cooldown = 1.0
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
@@ -37,15 +37,11 @@ position = Vector2( 630, 450 )
 
 [node name="HUB" parent="." instance=ExtResource( 8 )]
 
-[node name="Plant" parent="." instance=ExtResource( 9 )]
-position = Vector2( 350, 465 )
-origin_plant = Vector2( 350, 500 )
-
-[node name="Plant2" parent="." instance=ExtResource( 9 )]
-position = Vector2( 300, 330 )
-rotation = -1.57079
-length_stem = 1
-origin_plant = Vector2( 300, 400 )
+[node name="Plant3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 400, 325 )
+length_stem = 4
+origin_plant = Vector2( 400, 500 )
+targetPoint = Vector2( 0, -35 )
 
 [connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
 [connection signal="body_entered" from="Portal" to="." method="_on_Portal_body_entered"]

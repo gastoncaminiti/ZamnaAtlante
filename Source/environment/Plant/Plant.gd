@@ -5,14 +5,13 @@ export(PackedScene)  var stem
 export(int) var length_stem setget set_leght_plant
 export(Vector2) var origin_plant
 export(Vector2) var origin_grow 
+export(Vector2) var targetPoint
 
 
-onready var initPos  = global_position
-onready var initGrow =  $GrowPosition2D.position
-onready var targetPoint = initPos
 
 var canMove
 var isGrow
+
 
 func _ready():
 	connect_parent_child("plants_growed","grow")
@@ -22,14 +21,16 @@ func _ready():
 	canMove = false
 	isGrow = false
 
+
 func generate_plant():
-	position = origin_plant
+	global_position = origin_plant
 	$GrowPosition2D.position = origin_grow
 	for s in get_tree().get_nodes_in_group("Stem"):
 			s.queue_free()
 	for i in range(length_stem):
 			addsteam(i)
-	position -=  $GrowPosition2D.position / 2
+	global_position  -=  $GrowPosition2D.position / 2
+	
 
 func addsteam(index):
 	var new_stem = stem.instance()
@@ -45,23 +46,21 @@ func set_leght_plant(new_value):
 		generate_plant()
 
 func grow():
-	var s = stem.instance()
-	s.grow($GrowPosition2D)
-	add_child(s)
-	$GrowPosition2D.position += s.base_point().position
-	targetPoint = initPos - s.global_position
+	var new_stem = stem.instance()
+	new_stem.grow($GrowPosition2D)
+	$GrowPosition2D.position += new_stem.base_point().position
+	add_child(new_stem)
 	canMove = true
 	isGrow = true
 
 func ingrow():
-	var s = get_children().back()
-	if(s.is_in_group("Stem")):
-		s.ingrow()
-		targetPoint = s.global_position - s.base_point().global_position
+	var last_stem = get_children().back()
+	if(last_stem.is_in_group("Stem")):
+		last_stem.ingrow()
+		if($GrowPosition2D.position > origin_grow):
+			$GrowPosition2D.position -= last_stem.base_point().position
 		canMove = true
 		isGrow = false
-		if($GrowPosition2D.position > initGrow):
-			$GrowPosition2D.position -= s.base_point().position
 
 func _process(delta):
 	
