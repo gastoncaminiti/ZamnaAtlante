@@ -152,16 +152,17 @@ tracks/0/keys = {
 ]]
 script = ExtResource( 1 )
 run_speed = 200
+gravity = 200
 
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 0.291992, 0 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 6
-frame = 39
+frame = 45
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 13 )
+position = Vector2( 0, 14 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -181,3 +182,4 @@ position = Vector2( 33.8624, -34.0433 )
 rotation = -2.09439
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="animation_started" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_started"]

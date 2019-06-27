@@ -1,4 +1,3 @@
-tool
 extends Node
 
 #Declaración de variables de uso interno
@@ -17,6 +16,7 @@ signal plants_decreased
 signal plants_stoped
 
 func _ready():
+	set_block_level(false)
 	#Configuración inicial de conexiones con manejadores.
 	connect_event_manager("time_changed","_timepass")
 	connect_event_manager("future_changed","_goFuture")
@@ -110,5 +110,9 @@ func _goAction_after_animation(status):
 	if status == "read":
 		$HUB/Book.set_visible(true)
 	if status == "win":
+		set_block_level(true)
 		print("Win")
+	
+func set_block_level(status):
+	EventManager.level_block = status
 	

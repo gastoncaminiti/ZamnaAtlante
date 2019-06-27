@@ -1,15 +1,14 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://levels/Manager/LevelManager.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Background/Background.tscn" type="PackedScene" id=2]
 [ext_resource path="res://levels/Map/MapL1.tscn" type="PackedScene" id=3]
-[ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=4]
-[ext_resource path="res://GUI/Book/Book.tscn" type="PackedScene" id=5]
-[ext_resource path="res://environment/Plant/Plant.tscn" type="PackedScene" id=6]
-[ext_resource path="res://environment/Plataforms/PlataformMove.tscn" type="PackedScene" id=7]
-[ext_resource path="res://levels/Manager/TimerTime.tscn" type="PackedScene" id=8]
-[ext_resource path="res://player/Player.tscn" type="PackedScene" id=9]
-[ext_resource path="res://player/Camera2D.tscn" type="PackedScene" id=10]
+[ext_resource path="res://environment/Plant/Plant.tscn" type="PackedScene" id=4]
+[ext_resource path="res://levels/Manager/TimerTime.tscn" type="PackedScene" id=5]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/Camera2D.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GUI/HUB.tscn" type="PackedScene" id=8]
+[ext_resource path="res://environment/Plataforms/Platform.tscn" type="PackedScene" id=9]
 
 [node name="Level1" type="Node2D" groups=[
 "Level",
@@ -21,41 +20,39 @@ day = 10
 cooldown = 0.9
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
-margin_left = -126.0
-margin_top = -76.0
-margin_right = 1154.0
-margin_bottom = 884.0
+margin_left = -124.242
+margin_top = -77.7581
+margin_right = 1155.76
+margin_bottom = 882.242
 
 [node name="Map0" parent="." instance=ExtResource( 3 )]
 
-[node name="HUB" type="CanvasLayer" parent="."]
+[node name="Plant" parent="." instance=ExtResource( 4 )]
+position = Vector2( 322.372, 509.359 )
+length_plant = 1
+origin_plant = Vector2( 322.372, 544.359 )
 
-[node name="GUI" parent="HUB" instance=ExtResource( 4 )]
+[node name="Plant2" parent="." instance=ExtResource( 4 )]
+position = Vector2( 290.799, 509.365 )
+length_plant = 1
+origin_plant = Vector2( 290.799, 544.365 )
 
-[node name="Book" parent="HUB" instance=ExtResource( 5 )]
-visible = false
+[node name="Plant3" parent="." instance=ExtResource( 4 )]
+position = Vector2( 259.73, 509.28 )
+length_plant = 1
+origin_plant = Vector2( 259.73, 544.28 )
 
-[node name="Plant" parent="." instance=ExtResource( 6 )]
-position = Vector2( 350, 480 )
-length_stem = 1
-origin_plant = Vector2( 350, 550 )
+[node name="TimerTime" parent="." instance=ExtResource( 5 )]
 
-[node name="Plant2" parent="." instance=ExtResource( 6 )]
-position = Vector2( 300, 465 )
-origin_plant = Vector2( 300, 500 )
+[node name="Player" parent="." instance=ExtResource( 6 )]
+editor/display_folded = true
+position = Vector2( 152.229, 445.143 )
 
-[node name="Plant3" parent="." instance=ExtResource( 6 )]
-position = Vector2( 260, 515 )
-origin_plant = Vector2( 260, 550 )
+[node name="Camera2D" parent="Player" instance=ExtResource( 7 )]
 
-[node name="PlataformMove" parent="." instance=ExtResource( 7 )]
-position = Vector2( 316.041, 520.702 )
+[node name="HUB" parent="." instance=ExtResource( 8 )]
 
-[node name="TimerTime" parent="." instance=ExtResource( 8 )]
-
-[node name="Player" parent="." instance=ExtResource( 9 )]
-position = Vector2( 180.881, 447.06 )
-
-[node name="Camera2D" parent="Player" instance=ExtResource( 10 )]
+[node name="Platform" parent="." instance=ExtResource( 9 )]
+position = Vector2( 311.385, 481.266 )
 
 [connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
