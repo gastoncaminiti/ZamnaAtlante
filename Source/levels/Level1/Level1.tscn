@@ -28,19 +28,19 @@ margin_bottom = 882.242
 [node name="Map0" parent="." instance=ExtResource( 3 )]
 
 [node name="Plant" parent="." instance=ExtResource( 4 )]
-position = Vector2( 322.372, 509.359 )
+position = Vector2( 340.769, 509 )
 length_plant = 1
-origin_plant = Vector2( 322.372, 544.359 )
+origin_plant = Vector2( 340.769, 544 )
 
 [node name="Plant2" parent="." instance=ExtResource( 4 )]
-position = Vector2( 290.799, 509.365 )
+position = Vector2( 299.58, 509 )
 length_plant = 1
-origin_plant = Vector2( 290.799, 544.365 )
+origin_plant = Vector2( 299.58, 544 )
 
 [node name="Plant3" parent="." instance=ExtResource( 4 )]
-position = Vector2( 259.73, 509.28 )
+position = Vector2( 258, 509 )
 length_plant = 1
-origin_plant = Vector2( 259.73, 544.28 )
+origin_plant = Vector2( 258, 544 )
 
 [node name="TimerTime" parent="." instance=ExtResource( 5 )]
 
@@ -53,6 +53,6 @@ position = Vector2( 152.229, 445.143 )
 [node name="HUB" parent="." instance=ExtResource( 8 )]
 
 [node name="Platform" parent="." instance=ExtResource( 9 )]
-position = Vector2( 311.385, 481.266 )
+position = Vector2( 317.408, 481.729 )
 
 [connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]

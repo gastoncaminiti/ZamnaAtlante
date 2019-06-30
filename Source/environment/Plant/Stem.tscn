@@ -3,8 +3,7 @@
 [ext_resource path="res://environment/Plant/Stem.gd" type="Script" id=1]
 [ext_resource path="res://environment/Plant/Tiles_Enredadera.png" type="Texture" id=2]
 
-[sub_resource type="CapsuleShape2D" id=1]
-height = 49.351
+[sub_resource type="RectangleShape2D" id=1]
 
 [sub_resource type="Animation" id=2]
 resource_name = "Dead"
@@ -63,7 +62,8 @@ hframes = 4
 frame = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 36, 36 )
+position = Vector2( 35.5, 35 )
+scale = Vector2( 0.9, 3.5 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

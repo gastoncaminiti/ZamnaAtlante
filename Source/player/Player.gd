@@ -4,6 +4,8 @@ export (int) var run_speed
 export (int) var gravity
 
 var velocity = Vector2()
+var up = Vector2(0, -1)
+
 var flag_status
 
 signal animation_finished
@@ -14,25 +16,16 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
-	var collision = move_and_collide(velocity * delta,false)
-	if collision:
-		velocity.y = 0
-		velocity = velocity.slide(collision.normal)
-		flag_status = "floor"
-	else:
-		flag_status = "none"
-		
+	move_and_slide_with_snap(velocity, Vector2(0, 32), up, false, 4, rad2deg(90),false)
 
 func _process(_delta):
-	print(flag_status)
-	print(velocity)
-	if velocity.x != 0 and velocity.y == 0:
-		$AnimationPlayer.play("Run")
-	if velocity.x == 0 and $AnimationPlayer.current_animation == "Run":  
-		$AnimationPlayer.play("Stop")
-	if  flag_status != "floor" and velocity.y > 10:
+	if is_on_floor():
+		if flag_status == "right" or flag_status == "left":
+			$AnimationPlayer.play("Run")
+		if flag_status == "none" and is_anim("Run"):  
+			$AnimationPlayer.play("Stop")
+	else:
 		$AnimationPlayer.play("Jump")
-	
 
 func _goMove(status):
 	if status == "right":
@@ -43,9 +36,13 @@ func _goMove(status):
 		$Sprite.flip_h = true
 	if status == "none":
 		velocity.x = 0
+	flag_status = status
 
 func AnimPlay(anim_name):
 	$AnimationPlayer.play(anim_name)
+	
+func is_anim(anim_name):
+	return $AnimationPlayer.current_animation == anim_name
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if(anim_name == "Stop"):
