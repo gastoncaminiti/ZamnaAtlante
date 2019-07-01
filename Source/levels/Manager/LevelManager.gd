@@ -9,8 +9,6 @@ export(bool)   var toFuture
 export(int)    var day
 export(float)  var cooldown
 
-var winLevel = false
-
 signal plants_growed
 signal plants_decreased
 signal plants_stoped
@@ -24,24 +22,23 @@ func _ready():
 	connect_event_manager("book_readed","_goRead")
 	connect_event_manager("gui_exited","_goExit")
 	connect_player_manager("animation_finished","_goAction_after_animation")
-	#Configuración inicial de fondo y elementos del HUB
+	#Configuración inicial de fondo y elementos de la interfaz
 	background_config()
 	$HUB.status_gui_zanma(toFuture)
 	$HUB.status_gui_sunmoon(isNight)
-	$HUB/GUI.notification_day(day)
+	$HUB.set_gui_day(day)
 	$TimerTime.set_wait_time(cooldown)
-	winLevel = false
 
 func _timepass():
 	if(can_change_time):
 		$HUB.transition_gui_sunmoon(isNight)
 		if(isNight and toFuture): 
-			day+=1				
+			day+=1
 		if(!isNight and !toFuture):
 			day-= 1
 		isNight = !isNight
 		background_config()
-		$HUB/GUI.notification_day(day)
+		$HUB.set_gui_day(day)
 		# Notificación de cambio de tiempo a elementos vivos
 		if(toFuture):
 			emit_signal("plants_growed")
@@ -103,16 +100,23 @@ func connect_player_manager(nsignal, nfunction):
 
 func _on_Portal_body_entered(body):
 	if(body.is_in_group("Players")):
-		$Player.AnimPlay("Win")
-		winLevel = true
+		set_block_level(true)
+		$Player.set_win()
 
 func _goAction_after_animation(status):
 	if status == "read":
 		$HUB/Book.set_visible(true)
 	if status == "win":
-		set_block_level(true)
-		print("Win")
-	
+		print("win-f")
+	if status == "pick":
+		set_block_level(false)
+		print("pick-f")
+
 func set_block_level(status):
 	EventManager.level_block = status
-	
+
+func _on_Track_body_entered(body):
+	if(body.is_in_group("Players")):
+		set_block_level(true)
+		$Player.set_pick()
+		$Track.queue_free()

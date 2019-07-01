@@ -1,6 +1,8 @@
 tool
 extends CanvasLayer
 
+var open_book = false
+
 func status_gui_sunmoon(new_status):
 	$GUI.notification_sunmoon("Night" if new_status else "Day")
 
@@ -15,3 +17,9 @@ func transition_gui_zanma(new_status):
 
 func set_gui_day(new_day):
 	$GUI.notification_day(new_day)
+	
+func set_open_book(status):
+	open_book = status
+	
+func is_open_book():
+	return open_book
