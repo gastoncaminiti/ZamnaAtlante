@@ -1,8 +1,10 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://GUI/HUB.gd" type="Script" id=1]
 [ext_resource path="res://GUI/GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://GUI/Book/Book.tscn" type="PackedScene" id=3]
+[ext_resource path="res://GUI/Tip/Tip.tscn" type="PackedScene" id=4]
+[ext_resource path="res://GUI/NextGUI/NextLevelGUI.tscn" type="PackedScene" id=5]
 
 [node name="HUB" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -16,5 +18,17 @@ margin_top = -280.0
 margin_right = -32.0
 margin_bottom = 20.0
 rect_scale = Vector2( 2, 2 )
-titulo = "Posees la reliquia de Zanma, puedes trasformar el dia en noche y la noche en dia. Presiona Space para ello."
 
+[node name="Tip" parent="." instance=ExtResource( 4 )]
+visible = false
+
+[node name="NextLevelGUI" parent="." instance=ExtResource( 5 )]
+visible = false
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 20.0
+margin_top = 20.0
+margin_right = 1024.0
+margin_bottom = 300.0
+
+[connection signal="level_changed" from="NextLevelGUI" to="." method="_on_NextLevelGUI_level_changed"]

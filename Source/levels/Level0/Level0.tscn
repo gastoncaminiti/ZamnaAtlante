@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://levels/Manager/LevelManager.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Background/Background.tscn" type="PackedScene" id=2]
@@ -10,6 +10,7 @@
 [ext_resource path="res://GUI/HUB.tscn" type="PackedScene" id=8]
 [ext_resource path="res://environment/Plant/Plant.tscn" type="PackedScene" id=9]
 [ext_resource path="res://environment/Item/Track.tscn" type="PackedScene" id=10]
+[ext_resource path="res://GUI/Tip/Tip.tscn" type="PackedScene" id=11]
 
 [node name="Level0" type="Node2D" groups=[
 "Level",
@@ -38,6 +39,7 @@ zoom = Vector2( 0.4, 0.4 )
 position = Vector2( 630, 450 )
 
 [node name="HUB" parent="." instance=ExtResource( 8 )]
+need_tips = true
 
 [node name="Plant2" parent="." instance=ExtResource( 9 )]
 position = Vector2( 400, 330 )
@@ -46,6 +48,10 @@ origin_plant = Vector2( 400, 470 )
 
 [node name="Track" parent="." instance=ExtResource( 10 )]
 position = Vector2( 120, 464 )
+description_track = "Tenes la reliquia de Zanma. Presiona (Space) para manejar el tiempo. (Esc) para salir del libro"
+
+[node name="Tip" parent="." instance=ExtResource( 11 )]
+visible = false
 
 [connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
 [connection signal="body_entered" from="Portal" to="." method="_on_Portal_body_entered"]

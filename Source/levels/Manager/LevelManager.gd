@@ -27,6 +27,7 @@ func _ready():
 	$HUB.status_gui_zanma(toFuture)
 	$HUB.status_gui_sunmoon(isNight)
 	$HUB.set_gui_day(day)
+	$HUB.set_open_book(false)
 	$TimerTime.set_wait_time(cooldown)
 
 func _timepass():
@@ -62,7 +63,9 @@ func _goPast():
 		wait()
 		
 func _goRead():
-	$Player.AnimPlay("Read")
+	if($HUB.is_open_book()):
+		$Player.AnimPlay("Read")
+		$HUB.close_tip()
 
 func _goExit():
 	if($HUB/Book.is_visible()):
@@ -105,12 +108,13 @@ func _on_Portal_body_entered(body):
 
 func _goAction_after_animation(status):
 	if status == "read":
-		$HUB/Book.set_visible(true)
+		$HUB.view_book()
 	if status == "win":
-		print("win-f")
+		$HUB.next_gui()
 	if status == "pick":
 		set_block_level(false)
-		print("pick-f")
+		$HUB.set_open_book(true)
+		$HUB.show_tip("Presionar (R)", $Player.position)
 
 func set_block_level(status):
 	EventManager.level_block = status
@@ -118,5 +122,6 @@ func set_block_level(status):
 func _on_Track_body_entered(body):
 	if(body.is_in_group("Players")):
 		set_block_level(true)
+		$HUB.set_page_book($Track.description_track)
 		$Player.set_pick()
 		$Track.queue_free()

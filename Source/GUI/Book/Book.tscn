@@ -28,8 +28,6 @@ margin_bottom = 150.0
 grow_horizontal = 0
 grow_vertical = 0
 script = ExtResource( 1 )
-titulo = "Nota de Campo"
-texto = "Prueba PruebaPrueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba CASA CASA CASACASACASACASA"
 
 [node name="Background" type="NinePatchRect" parent="."]
 margin_left = 60.0
