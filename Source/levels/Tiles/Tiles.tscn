@@ -2,7 +2,6 @@
 
 [ext_resource path="res://levels/Tiles/Tiles_Base_Escena.png" type="Texture" id=1]
 
-
 [node name="Tiles" type="Node2D"]
 
 [node name="SquareT1" type="Sprite" parent="."]
@@ -13,24 +12,22 @@ region_rect = Rect2( 0, 0, 50, 50 )
 [node name="StaticBody2D" type="StaticBody2D" parent="SquareT1"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SquareT1/StaticBody2D"]
-scale = Vector2( 1.21875, 1.21875 )
+scale = Vector2( 1.23, 1.23 )
 polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20 )
 
 [node name="SquareT2" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 55, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 50, 0, 50, 50 )
+region_rect = Rect2( 50, -0.2, 50, 50 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="SquareT2"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SquareT2/StaticBody2D2"]
-scale = Vector2( 1.21875, 1.23438 )
+scale = Vector2( 1.23, 1.23 )
 polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20 )
 
 [node name="SquareM1" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 110, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
@@ -39,46 +36,45 @@ region_rect = Rect2( 100, 0, 50, 50 )
 [node name="StaticBody2D2" type="StaticBody2D" parent="SquareM1"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SquareM1/StaticBody2D2"]
-scale = Vector2( 1.21875, 1.23438 )
+scale = Vector2( 1.23, 1.23 )
 polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20 )
 
 [node name="SquareM2" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 165, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 150, 0, 50, 50 )
+region_rect = Rect2( 150.2, 0.1, 50, 50 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="SquareM2"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SquareM2/StaticBody2D2"]
-scale = Vector2( 1.21875, 1.23438 )
+scale = Vector2( 1.23, 1.23 )
 polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20 )
 
 [node name="TriangleM1" type="Sprite" parent="."]
-editor/display_folded = true
+light_mask = 0
 position = Vector2( 220, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 200, 0, 50, 50 )
+region_rect = Rect2( 200.6, 0, 50, 50 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="TriangleM1"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TriangleM1/StaticBody2D2"]
-scale = Vector2( 1.21875, 1.23438 )
+scale = Vector2( 1.22, 1.22 )
 polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20 )
 
 [node name="TriangleM2" type="Sprite" parent="."]
-editor/display_folded = true
+light_mask = 0
 position = Vector2( 275, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 250, 0, 50, 50 )
+region_rect = Rect2( 249.4, 0, 50, 50 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="TriangleM2"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TriangleM2/StaticBody2D2"]
-scale = Vector2( 1.21875, 1.23438 )
+scale = Vector2( 1.22, 1.22 )
 polygon = PoolVector2Array( -20, -20, 20, -20, -20, 20 )
 
 [node name="TriangleM3" type="Sprite" parent="."]
@@ -86,29 +82,27 @@ editor/display_folded = true
 position = Vector2( 330, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 300, 0, 50, 50 )
+region_rect = Rect2( 300.6, 0, 50, 50 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="TriangleM3"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TriangleM3/StaticBody2D2"]
-scale = Vector2( 1.21875, 1.23438 )
-polygon = PoolVector2Array( 20, -20, 20, 20, -20, 20, 8.20511, -16.2025 )
+scale = Vector2( 1.23, 1.23 )
+polygon = PoolVector2Array( 20, -20, 20, 20, -20, 20, 8.20514, -16.2025 )
 
 [node name="TriangleM4" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 385, 0 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 350, 0, 50, 50 )
+region_rect = Rect2( 349.4, 0, 50, 50 )
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="TriangleM4"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TriangleM4/StaticBody2D2"]
-scale = Vector2( 1.21875, 1.23438 )
-polygon = PoolVector2Array( -20, -20, -4.10257, -16.2025, 20, 20, -20, 20 )
+scale = Vector2( 1.23, 1.23 )
+polygon = PoolVector2Array( -20, -20, -4, -16, 20, 20, -20, 20 )
 
 [node name="SquareT3" type="Sprite" parent="."]
-editor/display_folded = true
 position = Vector2( 0, 55 )
 texture = ExtResource( 1 )
 region_enabled = true
@@ -117,24 +111,24 @@ region_rect = Rect2( 0, 50, 50, 50 )
 [node name="StaticBody2D" type="StaticBody2D" parent="SquareT3"]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="SquareT3/StaticBody2D"]
-scale = Vector2( 1.21875, 1.21875 )
-polygon = PoolVector2Array( -20, -20, 20, -20, 20, 20, -20, 20 )
+scale = Vector2( 1.23, 1.23 )
+polygon = PoolVector2Array( -20, -20, 8.06452, -20.1613, 20, -20, 20, 20, -20, 20 )
 
 [node name="GrassP1" type="Sprite" parent="."]
 position = Vector2( 55, 55 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 50, 50, 50, 50 )
+region_rect = Rect2( 50.6, 50.6, 50, 50 )
 
 [node name="GrassP2" type="Sprite" parent="."]
 position = Vector2( 110, 55 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 100, 50, 50, 50 )
+region_rect = Rect2( 100.6, 50.6, 50, 50 )
 
 [node name="GrassP3" type="Sprite" parent="."]
 position = Vector2( 165, 55 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 150, 50, 50, 50 )
+region_rect = Rect2( 150.6, 50.6, 50, 50 )
 

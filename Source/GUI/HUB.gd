@@ -1,9 +1,10 @@
 tool
 extends CanvasLayer
 
-var open_book = false
-
+export(PackedScene)  var next_scene
 export(bool)  var need_tips = false
+
+var open_book = false
 
 func status_gui_sunmoon(new_status):
 	$GUI.notification_sunmoon("Night" if new_status else "Day")
@@ -42,13 +43,14 @@ func show_tip(new_tip, new_pos):
 		$Tip.position = Vector2(new_pos.x, new_pos.y - $Tip/Background.rect_size.y)
 		$Tip/Text.text = new_tip
 		$Tip.set_visible(true)
-		
+
 func close_tip():
 	if  need_tips:
 		$Tip.set_visible(false)
-		
+
 func next_gui():
 	$NextLevelGUI.set_visible(true)
 
 func _on_NextLevelGUI_level_changed():
-	get_tree().change_scene("res://levels/Level1/Level1.tscn")
+	if(next_scene):
+		return get_tree().change_scene_to(next_scene)

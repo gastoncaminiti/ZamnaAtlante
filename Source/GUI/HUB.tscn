@@ -26,8 +26,8 @@ visible = false
 visible = false
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 20.0
-margin_top = 20.0
+margin_left = 30.0
+margin_top = 30.0
 margin_right = 1024.0
 margin_bottom = 300.0
 

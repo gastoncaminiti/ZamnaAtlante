@@ -65,6 +65,7 @@ func _goPast():
 func _goRead():
 	if($HUB.is_open_book()):
 		$Player.AnimPlay("Read")
+		set_block_level(true)
 		$HUB.close_tip()
 
 func _goExit():
@@ -109,6 +110,7 @@ func _on_Portal_body_entered(body):
 func _goAction_after_animation(status):
 	if status == "read":
 		$HUB.view_book()
+		set_block_level(false)
 	if status == "win":
 		$HUB.next_gui()
 	if status == "pick":

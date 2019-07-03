@@ -6,6 +6,7 @@ export (int) var gravity
 var velocity = Vector2()
 var UP = Vector2(0, -1)
 var SNAP = Vector2(0, 32)
+var ANGLE = rad2deg(45)
 
 var flag_status
 
@@ -13,12 +14,12 @@ signal animation_finished
 
 func _ready():
 	connect_event_manager("player_moved","_goMove")
-	$AnimationPlayer.play("Idle")
+	flag_status = "ready"
 
 func _physics_process(_delta):
 	if !is_on_floor():
 		velocity.y = gravity
-	velocity = move_and_slide_with_snap(velocity, SNAP, UP, false, 4, rad2deg(45),false)
+	velocity = move_and_slide_with_snap(velocity, SNAP, UP, false, 4, ANGLE,false)
 
 func _process(_delta):
 	if is_on_floor():
@@ -28,7 +29,11 @@ func _process(_delta):
 			$AnimationPlayer.play("Stop")
 	else:
 		$AnimationPlayer.play("Jump")
+		
+	if flag_status == "ready":
+		$AnimationPlayer.play("Idle")
 
+	
 func _goMove(status):
 	if status == "right":
 		velocity.x = run_speed

@@ -21,10 +21,10 @@ day = 10
 cooldown = 0.9
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
-margin_left = -124.242
-margin_top = -77.7581
-margin_right = 1155.76
-margin_bottom = 882.242
+margin_left = -252.902
+margin_top = -88.9134
+margin_right = 1027.1
+margin_bottom = 871.087
 
 [node name="Map0" parent="." instance=ExtResource( 3 )]
 
@@ -46,10 +46,10 @@ origin_plant = Vector2( 258, 544 )
 [node name="TimerTime" parent="." instance=ExtResource( 5 )]
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-editor/display_folded = true
 position = Vector2( 152.229, 445.143 )
 
 [node name="Camera2D" parent="Player" instance=ExtResource( 7 )]
+zoom = Vector2( 0.4, 0.4 )
 
 [node name="HUB" parent="." instance=ExtResource( 8 )]
 
@@ -57,7 +57,7 @@ position = Vector2( 152.229, 445.143 )
 position = Vector2( 317.408, 481.729 )
 
 [node name="Portal" parent="." instance=ExtResource( 10 )]
-position = Vector2( 735.375, 192.85 )
+position = Vector2( 699.275, 193.753 )
 
 [connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
 [connection signal="body_entered" from="Portal" to="." method="_on_Portal_body_entered"]

@@ -1,13 +1,14 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://GUI/StarScreen.gd" type="Script" id=1]
-[ext_resource path="res://GUI/Images/sky.png" type="Texture" id=2]
-[ext_resource path="res://levels/Tiles/Tileset.tres" type="TileSet" id=3]
-[ext_resource path="res://GUI/Images/Piramide.png" type="Texture" id=4]
-[ext_resource path="res://GUI/Images/Totem.png" type="Texture" id=5]
-[ext_resource path="res://player/Player.png" type="Texture" id=6]
-[ext_resource path="res://GUI/Font/Positive System.otf" type="DynamicFontData" id=7]
-[ext_resource path="res://GUI/Images/Boton.png" type="Texture" id=8]
+[ext_resource path="res://levels/Level0/Level0.tscn" type="PackedScene" id=2]
+[ext_resource path="res://GUI/Images/sky.png" type="Texture" id=3]
+[ext_resource path="res://levels/Tiles/Tileset.tres" type="TileSet" id=4]
+[ext_resource path="res://GUI/Images/Piramide.png" type="Texture" id=5]
+[ext_resource path="res://GUI/Images/Totem.png" type="Texture" id=6]
+[ext_resource path="res://player/Player.png" type="Texture" id=7]
+[ext_resource path="res://GUI/Font/Positive System.otf" type="DynamicFontData" id=8]
+[ext_resource path="res://GUI/Images/Boton.png" type="Texture" id=9]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Stand"
@@ -30,27 +31,28 @@ tracks/0/keys = {
 size = 90
 outline_size = 4
 outline_color = Color( 0.337255, 0.278431, 0.133333, 1 )
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 41
 outline_size = 3
 outline_color = Color( 0.0784314, 0.0784314, 0.00392157, 1 )
 use_filter = true
-font_data = ExtResource( 7 )
+font_data = ExtResource( 8 )
 
 [node name="StarScreen" type="Node2D"]
 script = ExtResource( 1 )
+open_scene = ExtResource( 2 )
 
 [node name="background" type="TextureRect" parent="."]
 margin_right = 1280.0
 margin_bottom = 960.0
 rect_scale = Vector2( 0.8, 0.8 )
-texture = ExtResource( 2 )
+texture = ExtResource( 3 )
 
 [node name="TileMap" type="TileMap" parent="."]
 position = Vector2( -9.53674e-007, 0 )
-tile_set = ExtResource( 3 )
+tile_set = ExtResource( 4 )
 cell_size = Vector2( 50, 50 )
 format = 1
 tile_data = PoolIntArray( 655373, 9, 0, 655374, 9, 0, 655375, 9, 0, 655376, 9, 0, 655377, 9, 0, 655378, 9, 0, 655379, 9, 0, 655380, 9, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 1, 0, 720903, 1, 0, 720904, 1, 0, 720905, 1, 0, 720906, 1, 0, 720907, 1, 0, 720908, 1, 0, 720909, 1, 0, 720910, 1, 0, 720911, 1, 0, 720912, 1, 0, 720913, 1, 0, 720914, 1, 0, 720915, 1, 0, 720916, 1, 0 )
@@ -61,14 +63,14 @@ margin_top = 225.632
 margin_right = 434.466
 margin_bottom = 449.632
 rect_scale = Vector2( 1.6, 1.6 )
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="pyramid" type="TextureRect" parent="."]
 margin_left = -122.382
 margin_top = 395.965
 margin_right = 321.618
 margin_bottom = 619.965
-texture = ExtResource( 4 )
+texture = ExtResource( 5 )
 
 [node name="totem" type="TextureRect" parent="."]
 margin_left = 834.564
@@ -76,13 +78,13 @@ margin_top = 231.231
 margin_right = 872.564
 margin_bottom = 336.231
 rect_scale = Vector2( 3, 3 )
-texture = ExtResource( 5 )
+texture = ExtResource( 6 )
 
 [node name="Ema" type="Sprite" parent="."]
 editor/display_folded = true
 position = Vector2( 761.303, 440.565 )
 scale = Vector2( 7, 7 )
-texture = ExtResource( 6 )
+texture = ExtResource( 7 )
 vframes = 16
 hframes = 6
 frame = 35
@@ -103,7 +105,7 @@ text = "Zanma Atlante
 [node name="Sprite" type="Sprite" parent="."]
 position = Vector2( 831.407, 149.514 )
 scale = Vector2( 4, 4 )
-texture = ExtResource( 8 )
+texture = ExtResource( 9 )
 
 [node name="ButtonPlay" type="Button" parent="."]
 margin_left = 758.0
@@ -111,6 +113,9 @@ margin_top = 95.0
 margin_right = 903.0
 margin_bottom = 172.0
 custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+custom_colors/font_color_hover = Color( 0.87451, 0.231373, 0.0117647, 1 )
+custom_colors/font_color_pressed = Color( 0.584314, 0.513726, 0.0470588, 1 )
 text = "Play"
 flat = true
 
