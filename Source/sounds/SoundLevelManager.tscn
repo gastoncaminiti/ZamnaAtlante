@@ -1,0 +1,53 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://sounds/SoundLevelManager.gd" type="Script" id=1]
+[ext_resource path="res://sounds/game.ogg" type="AudioStream" id=2]
+[ext_resource path="res://sounds/day.ogg" type="AudioStream" id=3]
+[ext_resource path="res://sounds/night.ogg" type="AudioStream" id=4]
+[ext_resource path="res://sounds/book.ogg" type="AudioStream" id=5]
+[ext_resource path="res://sounds/track.ogg" type="AudioStream" id=6]
+[ext_resource path="res://sounds/snake.ogg" type="AudioStream" id=7]
+[ext_resource path="res://sounds/win.ogg" type="AudioStream" id=8]
+[ext_resource path="res://sounds/lose.ogg" type="AudioStream" id=9]
+[ext_resource path="res://sounds/credit.ogg" type="AudioStream" id=10]
+
+[node name="SoundLevelManager" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="game" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+volume_db = -20.0
+pitch_scale = 1.2
+
+[node name="day" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -30.0
+
+[node name="night" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+volume_db = -30.0
+
+[node name="book" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+
+[node name="track" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -10.0
+
+[node name="snake" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -20.0
+
+[node name="win" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+volume_db = -15.0
+
+[node name="lose" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+volume_db = -10.0
+
+[node name="credit" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -5.0
+pitch_scale = 1.2
+

@@ -1,19 +1,38 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://GUI/Images/sky.png" type="Texture" id=1]
 [ext_resource path="res://levels/Tiles/Tileset.tres" type="TileSet" id=2]
 [ext_resource path="res://GUI/Images/Totem.png" type="Texture" id=3]
 [ext_resource path="res://GUI/Font/Positive System.otf" type="DynamicFontData" id=4]
-[ext_resource path="res://GUI/Book/Book.tscn" type="PackedScene" id=5]
-[ext_resource path="res://environment/Item/Track.tscn" type="PackedScene" id=6]
-[ext_resource path="res://GUI/Images/Logo.png" type="Texture" id=7]
-
+[ext_resource path="res://environment/Item/Track.tscn" type="PackedScene" id=5]
+[ext_resource path="res://GUI/Images/Logo.png" type="Texture" id=6]
+[ext_resource path="res://sounds/credit.ogg" type="AudioStream" id=7]
+[ext_resource path="res://GUI/Images/Recuadro-Diario.png" type="Texture" id=8]
+[ext_resource path="res://GUI/Font/Pixelopolis 9000.ttf" type="DynamicFontData" id=9]
+[ext_resource path="res://GUI/Images/FICH.jpg" type="Texture" id=10]
+[ext_resource path="res://icon.png" type="Texture" id=11]
 
 [sub_resource type="DynamicFont" id=1]
 size = 90
 outline_size = 4
 outline_color = Color( 0.337255, 0.278431, 0.133333, 1 )
 font_data = ExtResource( 4 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 70
+extra_spacing_bottom = 10
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 34
+outline_size = 1
+extra_spacing_top = 7
+extra_spacing_char = 2
+font_data = ExtResource( 9 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 24
+font_data = ExtResource( 9 )
 
 [node name="CreditScreen" type="Node2D"]
 
@@ -28,13 +47,13 @@ position = Vector2( -9.53674e-007, 0 )
 tile_set = ExtResource( 2 )
 cell_size = Vector2( 50, 50 )
 format = 1
-tile_data = PoolIntArray( 589824, 7, 0, 655360, 3, 0, 655361, 7, 0, 655377, 6, 0, 655378, 3, 0, 655379, 3, 0, 655380, 3, 0, 720896, 3, 0, 720897, 3, 0, 720898, 3, 0, 720899, 3, 0, 720900, 3, 0, 720901, 3, 0, 720902, 3, 0, 720903, 3, 0, 720904, 3, 0, 720905, 3, 0, 720906, 3, 0, 720907, 3, 0, 720908, 3, 0, 720909, 3, 0, 720910, 3, 0, 720911, 3, 0, 720912, 3, 0, 720913, 3, 0, 720914, 3, 0, 720915, 3, 0, 720916, 3, 0 )
+tile_data = PoolIntArray( 524304, 6, 0, 524305, 3, 0, 524306, 3, 0, 524307, 3, 0, 524308, 7, 0, 589824, 7, 0, 589840, 3, 0, 589844, 3, 0, 655360, 3, 0, 655361, 7, 0, 655376, 3, 0, 655380, 3, 0, 720896, 3, 0, 720897, 3, 0, 720898, 3, 0, 720899, 3, 0, 720900, 3, 0, 720901, 3, 0, 720902, 3, 0, 720903, 3, 0, 720904, 3, 0, 720905, 3, 0, 720906, 3, 0, 720907, 3, 0, 720908, 3, 0, 720909, 3, 0, 720910, 3, 0, 720911, 3, 0, 720912, 3, 0, 720913, 3, 0, 720914, 3, 0, 720915, 3, 0, 720916, 3, 0 )
 
 [node name="totem" type="TextureRect" parent="."]
-margin_left = 939.167
-margin_top = 289.796
-margin_right = 977.167
-margin_bottom = 394.796
+margin_left = 892.087
+margin_top = 189.57
+margin_right = 930.087
+margin_bottom = 294.57
 rect_scale = Vector2( 2, 2 )
 texture = ExtResource( 3 )
 
@@ -47,23 +66,126 @@ custom_fonts/font = SubResource( 1 )
 text = "Zanma Atlante
 "
 
-[node name="Book" parent="." instance=ExtResource( 5 )]
-margin_left = 322.915
-margin_top = 129.658
-margin_right = 424.915
-margin_bottom = 232.658
-titulo = "Gracias por Jugar"
-texto = "Trabajo final  Programacion III TDyPV - UNLVirtual 2019"
-
-[node name="Track" parent="." instance=ExtResource( 6 )]
-position = Vector2( 975.443, 245.306 )
+[node name="Track" parent="." instance=ExtResource( 5 )]
+position = Vector2( 927.129, 158.049 )
 scale = Vector2( 2, 2 )
 
 [node name="TextureRect" type="TextureRect" parent="."]
-margin_left = 582.853
-margin_top = 461.371
-margin_right = 1284.85
-margin_bottom = 838.371
+margin_left = 856.964
+margin_top = 469.263
+margin_right = 1558.96
+margin_bottom = 846.263
 rect_scale = Vector2( 0.2, 0.2 )
-texture = ExtResource( 7 )
+texture = ExtResource( 6 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+volume_db = -5.0
+pitch_scale = 1.1
+autoplay = true
+
+[node name="Credit" type="CanvasLayer" parent="."]
+
+[node name="CreditControl" type="Control" parent="Credit"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -176.0
+margin_top = -179.5
+margin_right = 176.0
+margin_bottom = 179.5
+
+[node name="NinePatchRect" type="NinePatchRect" parent="Credit/CreditControl"]
+margin_right = 400.0
+margin_bottom = 400.0
+texture = ExtResource( 8 )
+
+[node name="CreditVertical" type="VBoxContainer" parent="Credit/CreditControl"]
+margin_left = 58.0
+margin_top = 8.64906
+margin_right = 396.0
+margin_bottom = 362.649
+
+[node name="ThxMargin" type="MarginContainer" parent="Credit/CreditControl/CreditVertical"]
+margin_right = 338.0
+margin_bottom = 56.0
+
+[node name="Title" type="Label" parent="Credit/CreditControl/CreditVertical/ThxMargin"]
+margin_right = 338.0
+margin_bottom = 56.0
+custom_fonts/font = SubResource( 2 )
+custom_colors/font_color = Color( 0.345098, 0.0941176, 0.0941176, 1 )
+custom_colors/font_outline_modulate = Color( 0, 0, 0, 1 )
+custom_colors/font_color_shadow = Color( 0.47451, 0.168627, 0.160784, 1 )
+text = "> Gracias por jugar <"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="MarginContainer4" type="MarginContainer" parent="Credit/CreditControl/CreditVertical"]
+margin_top = 60.0
+margin_right = 338.0
+margin_bottom = 124.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Credit/CreditControl/CreditVertical/MarginContainer4"]
+margin_right = 338.0
+margin_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="Credit/CreditControl/CreditVertical/MarginContainer4/CenterContainer"]
+margin_left = 137.0
+margin_top = 8.0
+margin_right = 201.0
+margin_bottom = 64.0
+texture = ExtResource( 10 )
+
+[node name="MarginContainer" type="MarginContainer" parent="Credit/CreditControl/CreditVertical"]
+margin_top = 128.0
+margin_right = 338.0
+margin_bottom = 253.0
+
+[node name="TextA" type="Label" parent="Credit/CreditControl/CreditVertical/MarginContainer"]
+margin_right = 338.0
+margin_bottom = 125.0
+custom_fonts/font = SubResource( 3 )
+custom_colors/font_color = Color( 0.0156863, 0.364706, 0.447059, 1 )
+custom_colors/font_outline_modulate = Color( 0.623529, 0.623529, 0.623529, 1 )
+text = "Trabajo Final 
+Programacion de Videojuegos III 
+TDyPV -UNLVirtual
+"
+align = 1
+valign = 1
+autowrap = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="Credit/CreditControl/CreditVertical"]
+margin_top = 257.0
+margin_right = 338.0
+margin_bottom = 321.0
+
+[node name="CenterContainer" type="CenterContainer" parent="Credit/CreditControl/CreditVertical/MarginContainer3"]
+margin_right = 338.0
+margin_bottom = 64.0
+
+[node name="TextureRect" type="TextureRect" parent="Credit/CreditControl/CreditVertical/MarginContainer3/CenterContainer"]
+margin_left = 137.0
+margin_right = 237.0
+margin_bottom = 100.0
+texture = ExtResource( 11 )
+
+[node name="MarginContainer2" type="MarginContainer" parent="Credit/CreditControl/CreditVertical"]
+margin_top = 325.0
+margin_right = 338.0
+margin_bottom = 382.0
+
+[node name="TextB" type="Label" parent="Credit/CreditControl/CreditVertical/MarginContainer2"]
+margin_right = 338.0
+margin_bottom = 57.0
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.227451, 0.223529, 0.223529, 1 )
+text = "Zamna Atlante es un proyecto de aprendizaje open source
+https://github.com/gastoncaminiti/ZamnaAtlante
+"
+align = 1
+valign = 1
 

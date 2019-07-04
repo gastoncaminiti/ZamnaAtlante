@@ -61,12 +61,18 @@ func set_pick():
 	AnimPlay("Pick")
 	flag_status = "pick"
 
+func _on_AnimationPlayer_animation_started(anim_name):
+	if(anim_name == "Read"):
+		print($AnimationPlayer.playback_speed)
+		$AnimationPlayer.playback_speed = 0.4
+
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if(anim_name == "Stop"):
 		$AnimationPlayer.play("Idle")
 	if(anim_name == "Win"):
 		emit_signal("animation_finished", "win")
 	if(anim_name == "Read"):
+		$AnimationPlayer.playback_speed = 0.2
 		emit_signal("animation_finished", "read")
 		$AnimationPlayer.play("Idle")
 	if(anim_name == "Pick"):

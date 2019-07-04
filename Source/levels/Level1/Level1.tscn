@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://levels/Manager/LevelManager.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Background/Background.tscn" type="PackedScene" id=2]
@@ -8,8 +8,10 @@
 [ext_resource path="res://player/Player.tscn" type="PackedScene" id=6]
 [ext_resource path="res://player/Camera2D.tscn" type="PackedScene" id=7]
 [ext_resource path="res://GUI/HUB.tscn" type="PackedScene" id=8]
-[ext_resource path="res://environment/Plataforms/Platform.tscn" type="PackedScene" id=9]
-[ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=10]
+[ext_resource path="res://GUI/CreditScreen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://environment/Plataforms/Platform.tscn" type="PackedScene" id=10]
+[ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=11]
+[ext_resource path="res://sounds/SoundLevelManager.tscn" type="PackedScene" id=12]
 
 [node name="Level1" type="Node2D" groups=[
 "Level",
@@ -18,7 +20,6 @@ script = ExtResource( 1 )
 isNight = true
 toFuture = true
 day = 10
-cooldown = 0.9
 
 [node name="Background" parent="." instance=ExtResource( 2 )]
 margin_left = -252.902
@@ -52,12 +53,15 @@ position = Vector2( 152.229, 445.143 )
 zoom = Vector2( 0.4, 0.4 )
 
 [node name="HUB" parent="." instance=ExtResource( 8 )]
+next_scene = ExtResource( 9 )
 
-[node name="Platform" parent="." instance=ExtResource( 9 )]
+[node name="Platform" parent="." instance=ExtResource( 10 )]
 position = Vector2( 317.408, 481.729 )
 
-[node name="Portal" parent="." instance=ExtResource( 10 )]
+[node name="Portal" parent="." instance=ExtResource( 11 )]
 position = Vector2( 699.275, 193.753 )
+
+[node name="SoundLevelManager" parent="." instance=ExtResource( 12 )]
 
 [connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
 [connection signal="body_entered" from="Portal" to="." method="_on_Portal_body_entered"]

@@ -2,12 +2,11 @@ extends Node
 
 #Declaración de variables de uso interno
 var can_change_time = true
-
+var COOLDOWN = 1
 #Declaración de variables configurables del nivel
 export(bool)   var isNight setget set_night
 export(bool)   var toFuture
 export(int)    var day
-export(float)  var cooldown
 
 signal plants_growed
 signal plants_decreased
@@ -28,8 +27,9 @@ func _ready():
 	$HUB.status_gui_sunmoon(isNight)
 	$HUB.set_gui_day(day)
 	$HUB.set_open_book(false)
-	$TimerTime.set_wait_time(cooldown)
-
+	$TimerTime.set_wait_time(COOLDOWN)
+	$SoundLevelManager.play_sound("game")
+	
 func _timepass():
 	if(can_change_time):
 		$HUB.transition_gui_sunmoon(isNight)
@@ -39,6 +39,7 @@ func _timepass():
 			day-= 1
 		isNight = !isNight
 		background_config()
+		$SoundLevelManager.play_sound("night" if isNight else "day")
 		$HUB.set_gui_day(day)
 		# Notificación de cambio de tiempo a elementos vivos
 		if(toFuture):
@@ -105,10 +106,13 @@ func connect_player_manager(nsignal, nfunction):
 func _on_Portal_body_entered(body):
 	if(body.is_in_group("Players")):
 		set_block_level(true)
+		$SoundLevelManager.stop_sound("game")
+		$SoundLevelManager.play_sound("win")
 		$Player.set_win()
 
 func _goAction_after_animation(status):
 	if status == "read":
+		$SoundLevelManager.play_sound("book")
 		$HUB.view_book()
 		set_block_level(false)
 	if status == "win":
@@ -124,6 +128,7 @@ func set_block_level(status):
 func _on_Track_body_entered(body):
 	if(body.is_in_group("Players")):
 		set_block_level(true)
+		$SoundLevelManager.play_sound("track")
 		$HUB.set_page_book($Track.description_track)
 		$Player.set_pick()
 		$Track.queue_free()

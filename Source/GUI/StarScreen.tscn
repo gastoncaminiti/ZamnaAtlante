@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://GUI/StarScreen.gd" type="Script" id=1]
 [ext_resource path="res://levels/Level0/Level0.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://player/Player.png" type="Texture" id=7]
 [ext_resource path="res://GUI/Font/Positive System.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://GUI/Images/Boton.png" type="Texture" id=9]
+[ext_resource path="res://sounds/intro.ogg" type="AudioStream" id=10]
 
 [sub_resource type="Animation" id=1]
 resource_name = "Stand"
@@ -122,5 +123,10 @@ flat = true
 [node name="Camera2D" type="Camera2D" parent="."]
 anchor_mode = 0
 current = true
+
+[node name="Intro" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+volume_db = -5.0
+autoplay = true
 
 [connection signal="pressed" from="ButtonPlay" to="." method="_on_Button_pressed"]
