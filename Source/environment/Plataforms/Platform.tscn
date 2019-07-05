@@ -9,7 +9,8 @@ extents = Vector2( 60, 20 )
 [node name="Platform" type="RigidBody2D" groups=[
 "Platforms",
 ]]
-mass = 3000.0
+mass = 8000.0
+gravity_scale = 10.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 1 )

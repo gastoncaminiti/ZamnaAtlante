@@ -63,7 +63,6 @@ func set_pick():
 
 func _on_AnimationPlayer_animation_started(anim_name):
 	if(anim_name == "Read"):
-		print($AnimationPlayer.playback_speed)
 		$AnimationPlayer.playback_speed = 0.4
 
 func _on_AnimationPlayer_animation_finished(anim_name):

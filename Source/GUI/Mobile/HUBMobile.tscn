@@ -1,0 +1,69 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://GUI/Mobile/left.png" type="Texture" id=1]
+[ext_resource path="res://GUI/Mobile/right.png" type="Texture" id=2]
+[ext_resource path="res://GUI/Mobile/past.png" type="Texture" id=3]
+[ext_resource path="res://GUI/Mobile/future.png" type="Texture" id=4]
+[ext_resource path="res://GUI/Mobile/read.png" type="Texture" id=5]
+
+[sub_resource type="CircleShape2D" id=1]
+
+[node name="HUBMobile" type="CanvasLayer"]
+layer = 2
+
+[node name="PlayerControl" type="HBoxContainer" parent="."]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -95.0
+margin_bottom = -12.0
+
+[node name="Left" type="TouchScreenButton" parent="PlayerControl"]
+position = Vector2( 28, 13 )
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 1 )
+action = "move_left"
+visibility_mode = 1
+
+[node name="Right" type="TouchScreenButton" parent="PlayerControl"]
+position = Vector2( 102, 13 )
+scale = Vector2( 0.8, 0.8 )
+normal = ExtResource( 2 )
+action = "move_right"
+visibility_mode = 1
+
+[node name="ReliqControl" type="VBoxContainer" parent="."]
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Past-Future-Container" type="HBoxContainer" parent="ReliqControl"]
+
+[node name="Past" type="TouchScreenButton" parent="ReliqControl/Past-Future-Container"]
+position = Vector2( -135, 420 )
+scale = Vector2( 0.7, 0.7 )
+normal = ExtResource( 3 )
+action = "to_pass"
+visibility_mode = 1
+
+[node name="Future" type="TouchScreenButton" parent="ReliqControl/Past-Future-Container"]
+position = Vector2( -66.5083, 418.603 )
+scale = Vector2( 0.7, 0.7 )
+normal = ExtResource( 4 )
+action = "to_future"
+visibility_mode = 1
+
+[node name="Reliq" type="TouchScreenButton" parent="ReliqControl"]
+position = Vector2( -70, 535 )
+scale = Vector2( 6, 6 )
+shape = SubResource( 1 )
+action = "time_change"
+visibility_mode = 1
+
+[node name="Read" type="TouchScreenButton" parent="."]
+position = Vector2( 72.7522, 472.772 )
+scale = Vector2( 0.6, 0.6 )
+normal = ExtResource( 5 )
+action = "read_book"
+visibility_mode = 1
+

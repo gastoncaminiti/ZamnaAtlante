@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://levels/Manager/LevelManager.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Background/Background.tscn" type="PackedScene" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://environment/Plataforms/Platform.tscn" type="PackedScene" id=10]
 [ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=11]
 [ext_resource path="res://sounds/SoundLevelManager.tscn" type="PackedScene" id=12]
+[ext_resource path="res://GUI/Mobile/HUBMobile.tscn" type="PackedScene" id=13]
 
 [node name="Level1" type="Node2D" groups=[
 "Level",
@@ -62,6 +63,8 @@ position = Vector2( 317.408, 481.729 )
 position = Vector2( 699.275, 193.753 )
 
 [node name="SoundLevelManager" parent="." instance=ExtResource( 12 )]
+
+[node name="HUBMobile" parent="." instance=ExtResource( 13 )]
 
 [connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
 [connection signal="body_entered" from="Portal" to="." method="_on_Portal_body_entered"]

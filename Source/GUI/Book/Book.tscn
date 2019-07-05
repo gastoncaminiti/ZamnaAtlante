@@ -1,8 +1,9 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://GUI/Book/Book.gd" type="Script" id=1]
 [ext_resource path="res://GUI/Images/Recuadro-Diario.png" type="Texture" id=2]
 [ext_resource path="res://GUI/Font/Pixelopolis 9000.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://GUI/Mobile/lineDark42.png" type="Texture" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 size = 50
@@ -63,4 +64,11 @@ text = "Prueba PruebaPrueba Prueba Prueba Prueba Prueba Prueba Prueba Prueba CAS
 align = 1
 valign = 1
 autowrap = true
+
+[node name="Close" type="TouchScreenButton" parent="."]
+position = Vector2( 63.222, 1.62109 )
+scale = Vector2( 0.351568, 0.344814 )
+normal = ExtResource( 4 )
+action = "exit"
+visibility_mode = 1
 

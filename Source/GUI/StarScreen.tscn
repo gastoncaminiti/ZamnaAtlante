@@ -117,6 +117,7 @@ custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 1, 1, 1 )
 custom_colors/font_color_hover = Color( 0.87451, 0.231373, 0.0117647, 1 )
 custom_colors/font_color_pressed = Color( 0.584314, 0.513726, 0.0470588, 1 )
+toggle_mode = true
 text = "Play"
 flat = true
 
