@@ -50,6 +50,9 @@ func close_tip():
 
 func next_gui():
 	$NextLevelGUI.set_visible(true)
+	
+func set_movements_GUI(new_value):
+	$NextLevelGUI.set_movements(new_value)
 
 func _on_NextLevelGUI_level_changed():
 	if(next_scene):

@@ -1,0 +1,69 @@
+[gd_scene load_steps=14 format=2]
+
+[ext_resource path="res://levels/Manager/LevelManager.gd" type="Script" id=1]
+[ext_resource path="res://GUI/Background/Background.tscn" type="PackedScene" id=2]
+[ext_resource path="res://levels/Map/MapL2.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/Camera2D.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/Manager/TimerTime.tscn" type="PackedScene" id=6]
+[ext_resource path="res://environment/Portal/Portal.tscn" type="PackedScene" id=7]
+[ext_resource path="res://GUI/HUB.tscn" type="PackedScene" id=8]
+[ext_resource path="res://GUI/CreditScreen.tscn" type="PackedScene" id=9]
+[ext_resource path="res://GUI/Mobile/HUBMobile.tscn" type="PackedScene" id=10]
+[ext_resource path="res://sounds/SoundLevelManager.tscn" type="PackedScene" id=11]
+[ext_resource path="res://environment/Plant/Plant.tscn" type="PackedScene" id=12]
+[ext_resource path="res://environment/Plataforms/SquareMove.tscn" type="PackedScene" id=13]
+
+[node name="Level2" type="Node2D" groups=[
+"Level",
+]]
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -258.27 ]
+}
+day = 5
+
+[node name="Background" parent="." instance=ExtResource( 2 )]
+margin_left = -319.455
+margin_top = -125.192
+margin_right = 960.545
+margin_bottom = 834.808
+rect_scale = Vector2( 1.2, 1.2 )
+
+[node name="MapL2" parent="." instance=ExtResource( 3 )]
+
+[node name="Player" parent="." instance=ExtResource( 4 )]
+position = Vector2( 41.2537, 445.857 )
+
+[node name="Camera2D" parent="Player" instance=ExtResource( 5 )]
+zoom = Vector2( 0.4, 0.4 )
+
+[node name="TimerTime" parent="." instance=ExtResource( 6 )]
+
+[node name="Portal" parent="." instance=ExtResource( 7 )]
+position = Vector2( 955.758, 491.732 )
+
+[node name="HUB" parent="." instance=ExtResource( 8 )]
+next_scene = ExtResource( 9 )
+
+[node name="HUBMobile" parent="." instance=ExtResource( 10 )]
+
+[node name="SoundLevelManager" parent="." instance=ExtResource( 11 )]
+
+[node name="Plant" parent="." instance=ExtResource( 12 )]
+position = Vector2( 390.581, 498.103 )
+rotation = 1.5708
+length_plant = 3
+origin_plant = Vector2( 285.581, 498.103 )
+
+[node name="Plant2" parent="." instance=ExtResource( 12 )]
+position = Vector2( 864.488, 339.012 )
+rotation = -1.5708
+action_plant = 3
+origin_plant = Vector2( 864.488, 339.012 )
+
+[node name="SquareMove" parent="." instance=ExtResource( 13 )]
+position = Vector2( 668.68, 317.556 )
+
+[connection signal="timeout" from="TimerTime" to="." method="_on_TimerTime_timeout"]
+[connection signal="body_entered" from="Portal" to="." method="_on_Portal_body_entered"]

@@ -14,6 +14,7 @@ signal plants_stoped
 
 func _ready():
 	set_block_level(false)
+	DataManager.reset_movements()
 	#Configuración inicial de conexiones con manejadores.
 	connect_event_manager("time_changed","_timepass")
 	connect_event_manager("future_changed","_goFuture")
@@ -33,6 +34,7 @@ func _ready():
 func _timepass():
 	if(can_change_time):
 		$HUB.transition_gui_sunmoon(isNight)
+		DataManager.add_movements()
 		if(isNight and toFuture): 
 			day+=1
 		if(!isNight and !toFuture):
@@ -51,6 +53,7 @@ func _timepass():
 
 func _goFuture():
 	if(can_change_time && !toFuture):
+		DataManager.add_movements()
 		toFuture = true
 		$HUB.transition_gui_zanma(toFuture)
 		can_change_time = false
@@ -58,6 +61,7 @@ func _goFuture():
 
 func _goPast():
 	if(can_change_time && toFuture):
+		DataManager.add_movements()
 		toFuture = false
 		$HUB.transition_gui_zanma(toFuture)
 		can_change_time = false
@@ -116,6 +120,7 @@ func _goAction_after_animation(status):
 		$HUB.view_book()
 		set_block_level(false)
 	if status == "win":
+		$HUB.set_movements_GUI(DataManager.get_movements())
 		$HUB.next_gui()
 	if status == "pick":
 		set_block_level(false)

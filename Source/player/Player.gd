@@ -27,6 +27,8 @@ func _process(_delta):
 			$AnimationPlayer.play("Run")
 		if flag_status == "none" and is_anim("Run"):  
 			$AnimationPlayer.play("Stop")
+		if is_anim("Jump"):
+			$AnimationPlayer.play("Idle")
 	else:
 		$AnimationPlayer.play("Jump")
 		

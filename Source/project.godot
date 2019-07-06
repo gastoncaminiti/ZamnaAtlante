@@ -22,6 +22,7 @@ config/icon="res://icon.png"
 [autoload]
 
 EventManager="*res://levels/Manager/EventManager.gd"
+DataManager="*res://levels/Manager/DataManager.gd"
 
 [display]
 
